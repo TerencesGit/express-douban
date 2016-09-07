@@ -1,0 +1,17 @@
+{
+  "name": "node-mongodb",
+  "description": "",
+  "main": "",
+  "authors": [
+    "transformGit <2630243397@qq.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "mongodb"
+  ],
+  "homepage": "https://github.com/TransformGit/node-mongodb",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
