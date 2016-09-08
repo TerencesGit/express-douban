@@ -1,0 +1,37 @@
+extend layout
+block content  
+    .container
+      table.table.table-hover.table-bordered.bable-radius
+        caption
+          h1 #{title}            
+        thead
+          tr
+            th &#x7528;&#x6237;&#x540D;                     
+            th &#x5BC6;&#x7801;
+            th 等级
+            th 注册时间
+            th 设置
+            th 删除             
+        tbody
+          each user in users
+            tr(class="id_#{user._id}") 
+              td= user.name                  
+              td= user.password
+              td= user.role
+              td #{moment(user.meta.updateAt).format('YYYY-MM-DD HH:mm:ss')}
+              td: a(href="../user/update/#{user._id}" data-toggle="modal" data-target="#myModal") 权限设置
+              td: button.btn.btn-danger.del(type="button", data-id="#{user._id}") 删除
+    #myModal.modal.fade
+      .modal-dialog
+        .modal-content
+          form(name="form")
+            .modal-header
+              h3.modal-title 用户设置
+            .modal-body
+              .form-group
+                label 设置权限
+                input.form-control.role(type="text")
+            .modal-footer
+              button.btn.btn-default(type="button" data-dismiss="modal")关闭
+              button.btn.btn-success.update提交
+    script(src="/js/user.js")

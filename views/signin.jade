@@ -1,0 +1,60 @@
+extend layout
+block content
+    .form-wrap.container
+      h1.page-header #{title}
+      |         
+      form(action="/user/signin" method="post" name='loginForm')
+        .input-group
+          span.input-group-addon
+            i.fa.fa-user.fa-fw
+          |                 
+          input#name.form-control(type='text', name='user[name]', placeholder='Username', required='')
+          |                 
+          span.fa.fa-check.right
+        |             
+        p.alert.alert-warning.alert-name
+          i.fa.fa-warning
+          | &nbsp; &nbsp;&#x7528;&#x6237;&#x540D;&#x4E0D;&#x5B58;&#x5728;
+        |             
+        .input-group
+          span.input-group-addon
+            i.fa.fa-key.fa-fw
+          |                 
+          input#passwd.form-control(type='password', name='user[password]', placeholder='Password', required='')
+          |                 
+          span.fa.fa-check.right
+        |             
+        p.alert.alert-warning.alert-pass
+          i.fa.fa-warning
+          | &nbsp;&nbsp;&#x5BC6;&#x7801;&#x4E0D;&#x6B63;&#x786E;
+        |             
+        .form-group
+          button#submit.btn.btn-success.col-sm-12(type='submit')
+            span.fa.fa-bolt
+            |  Submit
+    |     
+    //-script.
+      $(function() {
+
+      $('#submit').click(function(event) {
+      var name = $('#name').val(),
+      passwd = $('#passwd').val();
+      if(name.length<1 || passwd.length<1){
+      return false
+      }
+      $.post('/user/signin',{
+      name: name,
+      passwd: passwd
+      },function(res){
+      if(res.code == 0){
+      $('.alert-name').show()
+      $('.alert-pass').hide()
+      }else if(res.code == 1){
+      $('.alert-name').hide()
+      $('.alert-pass').show()
+      }else if(res.code == 2){
+        self.location='http://172.20.17.48:3000'; 
+      }
+      })
+      })
+      })

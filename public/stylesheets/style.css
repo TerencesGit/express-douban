@@ -1,8 +1,49 @@
 body {
-  padding: 50px;
+  padding: 60px 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+.table>thead>tr>th,
+.table>tbody>tr>td {
+    text-align: center;
+    vertical-align: middle
+}
+.navbar-brand{
+    padding: 0;
+}
+/*signin signup css*/
+.form-wrap {
+    width: 550px;
+    margin-top: 50px
+}
+
+.input-group,
+.form-group {
+    margin-top: 30px
+}
+
+.alert {
+    padding: 8px;
+    margin-top: 10px;
+    display: none
+}
+
+.right {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    margin: 10px -30px;
+    color: #5cb85c
+}
+
+.success {
+    border-color: #5cb85c
+}
+
+.error {
+    border-color: #d9534f
 }

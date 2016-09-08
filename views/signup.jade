@@ -1,0 +1,52 @@
+extend layout
+block content
+    .form-wrap.container
+      h1.page-header #{title}
+      |         
+      form(action='/user/signup', method="post", name='regForm')
+        .input-group
+          span.input-group-addon
+            i.fa.fa-user.fa-fw
+          |                 
+          input#name.form-control(type='text', name='user[name]', placeholder='Username', required='')
+          |                 
+          span.fa.fa-check.right
+        |             
+        p.alert.alert-warning
+          i.fa.fa-warning
+          | &nbsp; &nbsp;&#x4EE5;&#x5B57;&#x6BCD;&#x5F00;&#x5934;&#xFF0C;&#x4E14;&#x53EA;&#x80FD;&#x5305;&#x542B;&#x5B57;&#x6BCD;&#x3001;&#x6570;&#x5B57;&#x3001;&#x4E0B;&#x5212;&#x7EBF;&#xFF0C;5-12&#x4F4D;&#x4E4B;&#x95F4;
+        |             
+        p.alert.alert-warning.alert-exist
+          i.fa.fa-warning
+          | &nbsp; &nbsp;该&#x7528;&#x6237;&#x540D;&#x5DF2;&#x88AB;&#x5360;&#x7528;&#xFF01;
+        |             
+        .input-group
+          span.input-group-addon
+            i.fa.fa-key.fa-fw
+          |                 
+          input#passwd.form-control(type='password', name='user[password]', placeholder='Password', required='')
+          |                 
+          span.fa.fa-check.right
+        |             
+        p.alert.alert-warning
+          i.fa.fa-warning
+          | &nbsp;&nbsp;&#x5BC6;&#x7801;&#x957F;&#x5EA6;&#x5E94;&#x5728;6-12&#x4F4D;&#x4E4B;&#x95F4;
+        |             
+        .input-group
+          span.input-group-addon
+            i.fa.fa-keyboard-o.fa-fw
+          |                 
+          input#passwd2.form-control.passwd2(type='password', name='password2', placeholder='Confirm Password', required='', disabled='true')
+          |                 
+          span.fa.fa-check.right
+        |             
+        p.alert.alert-warning
+          i.fa.fa-warning
+          | &nbsp;&nbsp;&#x4E24;&#x6B21;&#x5BC6;&#x7801;&#x8F93;&#x5165;&#x4E0D;&#x4E00;&#x81F4;
+        |             
+        .form-group
+          button#submit.btn.btn-success.col-sm-12(type='submit', disabled='true')
+            span.fa.fa-bolt
+            |  Submit
+    |     
+    script(src='javascripts/form.js')
