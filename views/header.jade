@@ -1,0 +1,57 @@
+.navbar.navbar-default.navbar-fixed-top
+	.container
+		.navbar-header
+			a.navbar-brand(href="/")
+				img(src="http://o4j806krb.qnssl.com/public/images/cnodejs_light.svg")
+		div
+			ul.nav.navbar-nav
+				li.active
+					a(href="/") 电影频道
+				li
+					a(href="/admin") 进入后台
+				li
+					a(href="/admin/movie/list") 电影列表
+		if user
+			p.navbar-text.navbar-right
+				span Hello, #{user.username}
+				span &nbsp; | &nbsp;
+				a.navbar-link(href="/admin/article/list")进入后台
+				span &nbsp; | &nbsp;	
+				a.navbar-link(href="/logout")退出	
+		else		
+			p.navbar-text.navbar-right
+				a.navbar-link(href="/signup")注册
+				span &nbsp; | &nbsp;	
+				a.navbar-link(href="/signin")登录	
+#signUpModal.modal.fade
+	.modal-dialog
+		.modal-content
+			form(method="POST", action="/user/signup")
+				.modal-header
+					h3.modal-title 欢迎注册
+				.modal-body
+					.form-group
+						label 用户名
+						input.form-control.regname(name="user[username]",type="text",required)
+					.form-group
+						label 密码
+						input.form-control(name="user[password]",type="password",required)
+				.modal-footer
+					button.btn.btn-default(type="button" data-dismiss="modal")关闭
+					button.btn.btn-success(type="submit")提交
+#signInModal.modal.fade
+	.modal-dialog
+		.modal-content
+			form(method="post",action="/user/signin")
+				.modal-header
+					h3.modal-title 欢迎登录
+				.modal-body
+					.form-group
+						label 用户名
+						input.form-control(name="user[username]",type="text",required) 
+					.form-group
+						label 密码
+						input.form-control(name="user[password]",type="password",required)
+				.modal-footer
+					button.btn.btn-default(type="button" data-dismiss="modal")关闭
+					button.btn.btn-success(type="submit")提交

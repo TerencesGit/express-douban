@@ -11,11 +11,11 @@ var movieSchema = new mongoose.Schema({
 	meta: {
 		createAt: {
 			type: Date,
-			defalut: Date.now()
+			default: Date.now()
 		},
 		updateAt: {
-				type: Date,
-				defalut: Date.now()
+			type: Date,
+			default: Date.now()
 		}
 	}
 })
