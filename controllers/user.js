@@ -1,4 +1,5 @@
 var User = require('../models/user')
+var session = require('express-session');
 exports.showSignup = function(req, res){
 	res.render('signup',{
 		title: '用户注册'
@@ -36,7 +37,7 @@ exports.signin = function(req, res){
 			user.comparePassword(passwd, function(err, isMatch){
 				if(err) console.log(err)
 				if(isMatch){
-					//req.session.user = user;
+					req.session.user = user;
 					console.log('登录成功！')
 					res.redirect('/')
 				}else{
@@ -45,9 +46,12 @@ exports.signin = function(req, res){
 				}
 			})
 	})
-
 }
-exports.list =function(req, res){
+exports.logout = function(req, res){
+	delete req.session.user;
+	res.redirect('/')
+}
+exports.list = function(req, res){
 	User.fetch(function(err, users){
 		res.render('userlist', {
 			title: '用户列表',

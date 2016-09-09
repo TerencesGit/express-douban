@@ -13,9 +13,9 @@
 					a(href="/admin/movie/list") 电影列表
 		if user
 			p.navbar-text.navbar-right
-				span Hello, #{user.username}
+				span Hello, #{user.name}
 				span &nbsp; | &nbsp;
-				a.navbar-link(href="/admin/article/list")进入后台
+				a.navbar-link(href="/admin")进入后台
 				span &nbsp; | &nbsp;	
 				a.navbar-link(href="/logout")退出	
 		else		

@@ -10,13 +10,13 @@ var mongoose = require('mongoose');
 var dbUrl = '127.0.0.1:27017/movie';
 var db = mongoose.connect(dbUrl);
 var session = require('express-session');
-var mongoStore = require('connect-mongo')(session);
+var MongoStore = require('connect-mongo')(session);
 
 // Routers
-var routes = require('./routes/index');
-var users = require('./routes/users');
+// var routes = require('./routes/index');
+// var users = require('./routes/users');
 var movie = require('./routes/movie');
-var admin = require('./routes/admin');
+// var admin = require('./routes/admin');
 
 var app = express();
 
@@ -30,25 +30,22 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(session({
+    secret: 'movie'
+    // store: new MongoStore({
+    //      url: dbUrl,
+    //      collection: 'sessions'
+    // })
+}))
 app.use(express.static(path.join(__dirname, 'public')));
 app.locals.moment = require('moment')
-// app.use('/', routes);
-app.use('/', movie);
-app.use('/admin', admin);
-app.use('/', users);
-// save sessin 
-// app.use(session({
-//   secret: 'transfor',
-//   store: new mongoStore({
-//     url: dbUrl,
-//     collection: 'sessions'
-//   })
-// }))
 app.use(function(req, res, next) {
     var _user = req.session.user;
     app.locals.user = _user;
     next()
 })
+// app.use('/', routes);
+app.use('/', movie);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
