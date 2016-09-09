@@ -59,3 +59,35 @@ exports.list = function(req, res){
 		})
 	})
 }
+exports.set = function(req, res){
+	var id = req.body.user._id;
+	var name = req.body.user.name;
+	var grade = req.body.user.role;
+	User.update({_id: id},{'$set': {name: name, role: grade}},function(err, user){
+		if(err) console.log(err)
+		res.redirect('/user/list')	
+	})
+}
+exports.delete = function(req, res){
+	var id = req.query.id;
+	if(id){
+		User.remove({_id: id}, function(err, user){
+			if(err) console.log(err)
+			res.json({status: 1})
+		})
+	}
+}
+exports.signinRequired = function(req, res, next){
+	var user = req.session.user;
+	if(!user){
+		return res.redirect('/signin')
+	}
+	next()
+}
+exports.adminRequired = function(req, res, next){
+	var user = req.session.user;
+	if(user.role <= 20){
+		return res.redirect('/signup')
+	}
+	next()
+}

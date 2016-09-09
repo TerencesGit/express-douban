@@ -18,20 +18,24 @@ block content
               td= user.name                  
               td= user.password
               td= user.role
-              td #{moment(user.meta.updateAt).format('YYYY-MM-DD HH:mm:ss')}
-              td: a(href="../user/update/#{user._id}" data-toggle="modal" data-target="#myModal") 权限设置
+              td #{moment(user.meta.createAt).format('YYYY-MM-DD HH:mm:ss')}
+              td: a.userSet(data-id="#{user._id}" data-toggle="modal" data-target="#myModal") 权限设置
               td: button.btn.btn-danger.del(type="button", data-id="#{user._id}") 删除
     #myModal.modal.fade
       .modal-dialog
         .modal-content
-          form(name="form")
+          form(action="/user/set" method="post")
             .modal-header
               h3.modal-title 用户设置
             .modal-body
+              input.uid(type="hidden" name="user[_id]")
               .form-group
-                label 设置权限
-                input.form-control.role(type="text")
+                label 用户名
+                input.form-control.name(type="text" name="user[name]")
+              .form-group
+                label 等级
+                input.form-control.role(type="text" name="user[role]")
             .modal-footer
               button.btn.btn-default(type="button" data-dismiss="modal")关闭
-              button.btn.btn-success.update提交
-    script(src="/js/user.js")
+              button.btn.btn-success(type="submit")提交
+    script(src="/javascripts/user.js")
