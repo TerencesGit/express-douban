@@ -37,6 +37,6 @@ block content
                 .form-group
                     label.col-sm-2.control-label(for="inputSummary") 简介
                     .col-sm-10
-                        input#inputSummary.col-sm-10.form-control(type="text",name="movie[summary]" value="#{movie.summary}")
+                        textarea#inputSummary.col-sm-10.form-control(type="text",name="movie[summary]")=movie.summary
                 .form-group
-                    button.col-sm-offset-3.btn.btn-success(type="submit")添加
+                    button.col-sm-offset-6.btn.btn-success.btn-lg(type="submit") Submit

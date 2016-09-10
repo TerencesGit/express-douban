@@ -16,7 +16,6 @@ var MongoStore = require('connect-mongo')(session);
 // var routes = require('./routes/index');
 // var users = require('./routes/users');
 var movie = require('./routes/movie');
-// var admin = require('./routes/admin');
 
 var app = express();
 
@@ -44,8 +43,10 @@ app.use(function(req, res, next) {
     app.locals.user = _user;
     next()
 })
+
 // app.use('/', routes);
 app.use('/', movie);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

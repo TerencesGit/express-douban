@@ -17,6 +17,7 @@ router.delete('/movie/list', Movie.delete)
 // users router
 router.get('/signup', User.showSignup)
 router.get('/signin', User.showSignin)
+router.get('/user/signup', User.findByName)
 router.post('/user/signup', User.signup)
 router.post('/user/signin', User.signin)
 router.get('/logout', User.logout)

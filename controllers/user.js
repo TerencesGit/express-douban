@@ -10,6 +10,17 @@ exports.showSignin = function(req, res){
 		title: '用户登录'
 	})
 }
+exports.findByName = function(req, res){
+	var name = req.query.name;
+	User.findOne({name: name},function(err, user){
+		if(err) console.log(err)
+		if(user){
+			res.json({code: 1})
+		}else{
+			res.json({code: 2})
+		}
+	})
+}
 exports.signup = function(req, res){
 	var _user = req.body.user;
 	User.findOne({name: _user.name}, function(err, user){
@@ -26,23 +37,23 @@ exports.signup = function(req, res){
 	})
 }
 exports.signin = function(req, res){
-	var name = req.body.user.name;
-	var passwd = req.body.user.password;
+	var name = req.body.name;
+	var passwd = req.body.password;
 	User.findOne({name: name},function(err, user){
 		if(err) console.log(err)
 			if(!user){
 				console.log('用户名不存在')
-				return res.redirect('/signup')
+				return res.json({code: 0})
 			}
 			user.comparePassword(passwd, function(err, isMatch){
 				if(err) console.log(err)
 				if(isMatch){
 					req.session.user = user;
 					console.log('登录成功！')
-					res.redirect('/')
+					res.json({code: 2})
 				}else{
 					console.log('密码错误')
-					res.redirect('/signup')
+					res.json({code: 1})
 				}
 			})
 	})
