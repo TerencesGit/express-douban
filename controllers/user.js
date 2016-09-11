@@ -42,17 +42,14 @@ exports.signin = function(req, res){
 	User.findOne({name: name},function(err, user){
 		if(err) console.log(err)
 			if(!user){
-				console.log('用户名不存在')
 				return res.json({code: 0})
 			}
 			user.comparePassword(passwd, function(err, isMatch){
 				if(err) console.log(err)
 				if(isMatch){
 					req.session.user = user;
-					console.log('登录成功！')
 					res.json({code: 2})
 				}else{
-					console.log('密码错误')
 					res.json({code: 1})
 				}
 			})
