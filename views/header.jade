@@ -32,26 +32,26 @@
 				.modal-body
 					.form-group
 						label 用户名
-						input.form-control.regname(name="user[username]",type="text",required)
+						input.form-control.regname(name="user[name]" type="text" required)
 					.form-group
 						label 密码
-						input.form-control(name="user[password]",type="password",required)
+						input.form-control(name="user[password]" type="password" required)
 				.modal-footer
 					button.btn.btn-default(type="button" data-dismiss="modal")关闭
 					button.btn.btn-success(type="submit")提交
 #signInModal.modal.fade
 	.modal-dialog
 		.modal-content
-			form(method="post",action="/user/signin")
+			form(method="post",action="/signin")
 				.modal-header
 					h3.modal-title 欢迎登录
 				.modal-body
 					.form-group
 						label 用户名
-						input.form-control(name="user[username]",type="text",required) 
+						input.form-control(name="user[name]" type="text" required) 
 					.form-group
 						label 密码
-						input.form-control(name="user[password]",type="password",required)
+						input.form-control(name="user[password]" type="password" required)
 				.modal-footer
 					button.btn.btn-default(type="button" data-dismiss="modal")关闭
 					button.btn.btn-success(type="submit")提交

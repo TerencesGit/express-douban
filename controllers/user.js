@@ -1,5 +1,5 @@
 var User = require('../models/user')
-var session = require('express-session');
+//var session = require('express-session');
 exports.showSignup = function(req, res){
 	res.render('signup',{
 		title: '用户注册'
@@ -54,6 +54,26 @@ exports.signin = function(req, res){
 				}
 			})
 	})
+}
+exports.signInModal = function(req, res){
+	var user = req.body.user;
+	var passwd = user.password;
+	console.log(user)
+	User.findOne({name: user.name}, function(err, user){
+		if(err) console.log(err)
+		if(!user){
+			return res.redirect('/signup')
+		}
+		user.comparePassword(passwd, function(err, isMatch){
+			if(isMatch){
+				req.session.user = user;
+				res.redirect('/')
+			}else{
+				res.redirect('/signin')
+			}
+		})
+	})
+
 }
 exports.logout = function(req, res){
 	delete req.session.user;

@@ -15,6 +15,7 @@ exports.detail = function(req, res){
 	Movie.findById(id, function(err, movie){
 		Comment.find({movie: id})
 					 .populate('from', 'name')
+					 .populate('reply.from reply.to', 'name')
 					 .exec(function(err, comments){
 							res.render('detail',{
 							  title: 'movie 详情',
