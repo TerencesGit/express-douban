@@ -8,6 +8,10 @@ var movieSchema = new mongoose.Schema({
 	language: String,
 	flash: String,
 	summary: String,
+	pv: {
+		type: Number,
+		default: 0
+	},
 	meta: {
 		createAt: {
 			type: Date,

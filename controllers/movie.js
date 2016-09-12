@@ -14,6 +14,11 @@ exports.index = function(req, res){
 }
 exports.detail = function(req, res){
 	var id = req.params.id;
+	Movie.update({_id: id}, {$inc: {pv: 1}}, function(err){
+		if(err){
+			console.log(err)
+		}
+	})
 	Movie.findById(id, function(err, movie){
 		Comment.find({movie: id})
 					 .populate('from', 'name')
@@ -58,7 +63,6 @@ exports.new = function(req, res){
 	var movieObj = req.body.movie;
 	var _movie;
 	if(req.poster){
-		console.log(req.poster)
 		movieObj.poster = req.poster;
 	}
 	if(id !== 'undefined'){	
@@ -71,8 +75,6 @@ exports.new = function(req, res){
 		  })
 		})
 	}else{
-		console.log('-----movieObj---')
-		
 		_movie = new Movie({
 			title: movieObj.title,
 			doctor: movieObj.doctor,
