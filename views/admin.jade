@@ -7,6 +7,10 @@ block content
             form.form-horizontal(method="post",action="/movie/new")
                 input(type="hidden",name="movie[_id]", value="#{movie._id}")
                 .form-group
+                    label.col-sm-2.control-label 豆瓣同步
+                    .col-sm-10
+                        input#douban.form-control(type="text")
+                .form-group
                     label.col-sm-2.control-label(for="inputTitle") 电影名字
                     .col-sm-10
                         input#inputTitle.col-sm-10.form-control(type="text",name="movie[title]" value="#{movie.title}")
@@ -27,16 +31,17 @@ block content
                     .col-sm-10
                         input#inputYear.col-sm-10.form-control(type="text",name="movie[year]" value="#{movie.year}")
                 .form-group
-                    label.col-sm-2.control-label(for="") 海报
+                    label.col-sm-2.control-label 海报
                     .col-sm-10
-                        input.col-sm-10.form-control(type="text",name="movie[poster]" value="#{movie.poster}")
+                        input#inputPost.col-sm-10.form-control(type="text",name="movie[poster]" value="#{movie.poster}")
                 .form-group
                     label.col-sm-2.control-label(for="") flash
                     .col-sm-10
-                        input.col-sm-10.form-control(type="text",name="movie[flash]" value="#{movie.flash}")
+                        input#inputFlash.col-sm-10.form-control(type="text",name="movie[flash]" value="#{movie.flash}")
                 .form-group
                     label.col-sm-2.control-label(for="inputSummary") 简介
                     .col-sm-10
                         textarea#inputSummary.col-sm-10.form-control(type="text",name="movie[summary]")=movie.summary
                 .form-group
                     button.col-sm-offset-6.btn.btn-success.btn-lg(type="submit") Submit
+    script(src="/javascripts/admin.js")

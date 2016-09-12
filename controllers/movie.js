@@ -1,8 +1,8 @@
 var Movie =  require('../models/movie');
 var Comment =  require('../models/comment');
+var Caregory =  require('../models/category');
 var _ = require('underscore');
 exports.index = function(req, res){
-	console.log(req.session.user)
 	Movie.fetch(function(err, movies){
 		res.render('movie',{
 			title: '电影 首页',
