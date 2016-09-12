@@ -10,7 +10,7 @@ router.get('/', Movie.index)
 //movie router
 router.get('/movie/detail/:id', Movie.detail)
 router.get('/movie/entry', Movie.entry)
-router.post('/movie/new', Movie.new)
+router.post('/movie/new', Movie.savePoster, Movie.new)
 router.get('/movie/list', Movie.list)
 router.get('/movie/update/:id', Movie.update)
 router.delete('/movie/list', Movie.delete)	

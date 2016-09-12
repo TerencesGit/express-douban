@@ -2,6 +2,8 @@ var Movie =  require('../models/movie');
 var Comment =  require('../models/comment');
 var Caregory =  require('../models/category');
 var _ = require('underscore');
+var fs = require('fs');
+var path = require('path');
 exports.index = function(req, res){
 	Movie.fetch(function(err, movies){
 		res.render('movie',{
@@ -28,22 +30,37 @@ exports.detail = function(req, res){
 exports.entry = function(req, res){
   res.render('admin',{
      title: 'movie 后台录入页',
-     movie: {
-          doctor: '',
-          country: '',
-          title: '',
-          year: '',
-          poster: '',
-          language: '',
-          flash: '',
-          summary: ''
-     }
+     movie: {}
   })
+}
+exports.savePoster = function(req, res, next){
+	var posterData = req.files.poster;
+	console.log(posterData)
+	var filePath = posterData.path;
+	var originalFile = posterData.originalFilename;
+	if(originalFile){
+		fs.readFile(filePath, function(err, data){
+			var timestamp = Date.now();
+			var type = posterData.type.split('/')[1];
+			var poster = timestamp + '.' + type;
+			var newPath = path.join(__dirname, '../', '/public/upload/' + poster);
+			fs.writeFile(newPath, data, function(err){
+				req.poster = poster;
+				next()
+			})
+		})
+	}else{
+		next()
+	}
 }
 exports.new = function(req, res){
 	var id = req.body.movie._id;
 	var movieObj = req.body.movie;
 	var _movie;
+	if(req.poster){
+		console.log(req.poster)
+		movieObj.poster = req.poster;
+	}
 	if(id !== 'undefined'){	
 		Movie.findById(id, function(err,movie){
 			if(err) console.log(err)
@@ -54,6 +71,8 @@ exports.new = function(req, res){
 		  })
 		})
 	}else{
+		console.log('-----movieObj---')
+		
 		_movie = new Movie({
 			title: movieObj.title,
 			doctor: movieObj.doctor,

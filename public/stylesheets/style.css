@@ -47,3 +47,6 @@ a {
 .error {
     border-color: #d9534f
 }
+.thumbnail img{
+    width: 100%
+}
