@@ -13,23 +13,23 @@ block content
                 .form-group
                     label.col-sm-2.control-label(for="inputTitle") 电影名字
                     .col-sm-10
-                        input#inputTitle.col-sm-10.form-control(type="text",name="movie[title]" value=movie.title)
+                        input#inputTitle.col-sm-10.form-control(type="text",name="movie[title]" value=movie.title required)
                 .form-group
                     label.col-sm-2.control-label(for="inputDirector") 导演
                     .col-sm-10
-                        input#inputDirector.col-sm-10.form-control(type="text",name="movie[doctor]" value=movie.doctor)
+                        input#inputDirector.col-sm-10.form-control(type="text",name="movie[doctor]" value=movie.doctor required)
                 .form-group
                     label.col-sm-2.control-label(for="inputCountry") 国家
                     .col-sm-10
-                        input#inputCountry.col-sm-10.form-control(type="text",name="movie[country]" value=movie.country)
+                        input#inputCountry.col-sm-10.form-control(type="text",name="movie[country]" value=movie.country required)
                 .form-group
                     label.col-sm-2.control-label(for="inputLanguage") 语言
                     .col-sm-10
-                        input#inputLanguage.col-sm-10.form-control(type="text",name="movie[language]" value=movie.language)
+                        input#inputLanguage.col-sm-10.form-control(type="text",name="movie[language]" value=movie.language required)
                 .form-group
                     label.col-sm-2.control-label(for="inputYear") 上映年份
                     .col-sm-10
-                        input#inputYear.col-sm-10.form-control(type="text",name="movie[year]" value=movie.year)
+                        input#inputYear.col-sm-10.form-control(type="text",name="movie[year]" value=movie.year required)
                 .form-group
                     label.col-sm-2.control-label 海报地址
                     .col-sm-10
@@ -38,6 +38,8 @@ block content
                     label.col-sm-2.control-label 海报上传
                     .col-sm-10
                         input#uploadPost.form-control(type="file" name="poster")
+                        .imgWrap(onclick="$('#uploadPost').click()")
+                            img#imgPreview
                 .form-group
                     label.col-sm-2.control-label(for="") flash
                     .col-sm-10
@@ -45,7 +47,7 @@ block content
                 .form-group
                     label.col-sm-2.control-label(for="inputSummary") 简介
                     .col-sm-10
-                        textarea#inputSummary.col-sm-10.form-control(type="text",name="movie[summary]")=movie.summary
+                        textarea#inputSummary.col-sm-10.form-control(type="text",name="movie[summary]" rows="6" required)=movie.summary
                 .form-group
                     button.col-sm-offset-6.btn.btn-success.btn-lg(type="submit") Submit
     script(src="/javascripts/admin.js")
